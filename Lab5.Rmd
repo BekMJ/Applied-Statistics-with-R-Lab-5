@@ -1,0 +1,158 @@
+---
+title: "Lab5"
+author: "Bek"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Tasks 
+
+## Task1
+
+```{r}
+getwd()
+```
+
+
+## Task2
+
+### simulate a binomial experiment where n=10,p=0.7, and Y=number of successes. For 100, 200, 500, 1000, 10000 iterations
+
+```{r}
+library(MATH4753LAB5)
+
+mybin(iter = 100, n=10, p = 0.7)
+mybin(iter = 200, n=10, p = 0.7)
+mybin(iter = 500, n=10, p = 0.7)
+mybin(iter = 1000, n=10, p = 0.7)
+mybin(iter = 10000, n=10, p = 0.7)
+
+```
+
+### For the last simulation (10,000 iterations) copy and paste the table that is produced from the function.
+
+     0      1      2      3      4      5      6      7      8      9     10 
+0.0000 0.0000 0.0022 0.0087 0.0395 0.1016 0.1961 0.2741 0.2268 0.1262 0.0248 
+
+```{r}
+dbinom(0, 10, 0.7)
+dbinom(1, 10, 0.7)
+dbinom(2, 10, 0.7)
+dbinom(3, 10, 0.7)
+dbinom(4, 10, 0.7)
+dbinom(5, 10, 0.7)
+dbinom(6, 10, 0.7)
+dbinom(7, 10, 0.7)
+dbinom(9, 10, 0.7)
+dbinom(9, 10, 0.7)
+dbinom(10, 10, 0.7)
+```
+
+The answers using dbinom differs from the simulations, probably because dbinom gives expected answers. Therefore, the larger the iteration, the more the simulation values get closer to expected values.
+
+
+## Task3 
+
+### Suppose that there is a bag of 20 marbles, 12 white (“1”) and 8 black “0”
+
+###	Use the function myhyper(), on CANVAS, assume Y = number of whites, remember sampling is without replacement, n=5. 
+
+### Use this code to make barplots of Y for the following number of iterations	100, 200, 500, 1000, 10000
+
+
+
+
+```{r}
+marbles = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+sample(marbles, 5, replace = FALSE)
+sample(marbles, 5, replace = TRUE)
+myhyper(iter=100, N = 20, r = 12, n =5)
+myhyper(iter=200, N = 20, r = 12, n =5)
+myhyper(iter=500, N = 20, r = 12, n =5)
+myhyper(iter=1000, N = 20, r = 12, n =5)
+myhyper(iter=10000, N = 20, r = 12, n =5)
+
+
+
+
+```
+
+### For the last simulation (10,000 iterations) copy and paste the table that is produced from the function.
+
+     0      1      2      3      4      5 
+0.0042 0.0489 0.2446 0.3897 0.2627 0.0499 
+
+```{r}
+round(dhyper(0:5, m=12, n=8,k=5), 4)
+
+```
+
+dhyper results are very close to myhyper results
+
+
+
+## Task4
+
+### In lab5.r there is a function called mysample(). Look at the code and describe what you think it should do – record your response here.
+
+It will probably draw a barplot consisting of multiple samples
+
+
+### Run the function with the following arguments mysample(n=1000, iter=30,time=1)
+
+mysample(n = 1000, iter = 30, time = 1)
+
+
+
+It displays barplots with replacement that display iterations from 1 to 30 that were selected from 1 to 10.
+
+```{r}
+mysample(n = 1000, iter = 1, time = 1)
+```
+
+
+## Task5 
+
+###	Use R to calculate,  (■(8@4)) – hint: Try choose(), 	P(Y>4),Y~Pois(λ=2)
+
+```{r}
+choose(8,4)
+1-ppois(4, lambda = 2)
+```
+
+### Some more calculations in R
+
+	P(Y=10),Y~NegBin(p=0.4,r=3) see CANVAS which has a full explanation of this.
+	P(Y≤8),Y~Bin(n=15,p=0.4)
+
+
+```{r}
+dnbinom(7,3,0.4)
+
+mynbin=function(y,r,p){
+  
+  choose(y-1,r-1)*p^r*(1-p)^(y-r)
+}
+
+mynbin(10,3,0.4)
+pbinom(8,size = 15,p=0.4)
+```
+
+## Task6
+
+```{r}
+MATH4753LAB5::mybin(iter=1000,n=18, p=0.3)
+```
+
+
+
+
+
+
