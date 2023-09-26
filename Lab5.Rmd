@@ -148,7 +148,7 @@ pbinom(8,size = 15,p=0.4)
 ## Task6
 
 ```{r}
-MATH4753LAB5::mybin(iter=1000,n=18, p=0.3)
+MATH4753LAB5::mybin(iter=1000,n=18, p=0.4)
 ```
 
 
